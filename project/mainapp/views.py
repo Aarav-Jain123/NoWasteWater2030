@@ -4,24 +4,38 @@ from random import randint
 from django.core.mail import send_mail
 from django.conf import settings
 from rest_framework.response import Response
+from django.contrib.auth import authenticate, login, logout
+from .models import *
+from django.contrib import messages
 
 
 # Create your views here.
+@api_view(['POST'])
 def index(request):
-    return HttpResponse('Hello World')
+    auth_data = request.data 
+    request.session['user_id'] = auth_data['user_id']
+    request.session['session_id'] = auth_data['session_id']
+    
+    user_exists = authenticate_user(request.session['user_id'])
+    if user_exists:
+        res = extract_parameters(user_id=request.session['user_id'])
+    else:
+        return Response(data=[{'key': 0, 'response': 'Pls go /signup page'}])
+            
+    return Response(data=res)
 
 
 @api_view(['POST'])
 def sign_up_page(request):
     auth_data = request.data
     
-    request.session['name'] = request.data['name']
-    request.session['email'] = request.data['email']
-    request.session['password'] = request.data['password']
+    request.session['name'] = auth_data['name']
+    request.session['email'] = auth_data['email']
+    request.session['password'] = auth_data['password']
     request.session.set_expiry(300)
     
-    auth_otp = otp_generator()
-    send_otp(request.session['email'], auth_otp)
+    request.session['auth_otp'] = otp_generator()
+    send_otp(request.session['email'], request.session['auth_otp'])
     
     res = [{'key': 0, 'response': 'Hello!'}]
     
@@ -36,8 +50,8 @@ def login_in_page(request):
     request.session['password'] = request.data['password']
     request.session.set_expiry(300)
     
-    auth_otp = otp_generator()
-    send_otp(request.session['email'], auth_otp)
+    request.session['auth_otp'] = otp_generator()
+    send_otp(request.session['email'], request.session['auth_otp'])
     
     res = [{'key': 0, 'response': 'Hello!'}]
     
@@ -50,17 +64,34 @@ def otp_generator():
     return r
 
 
-def send_email(email, token):
-    subject = 'Your OTP is here'
-    msg = f'Hello User! Here is your otp: {token}. Hope you get the best response from our side!'
-    from_email = settings.EMAIL_HOST_USER
-    recipients = [email]
-    send_mail(subject, msg, from_email, recipients)
-
-
 def send_otp(email, token):
     subject = 'Your OTP is here'
     msg = f'Here is your otp: {token}.'
     from_email = settings.EMAIL_HOST_USER
     recipients = [email]
     send_mail(subject, msg, from_email, recipients)
+    
+
+def authenticate_user(userr_id):
+    userr = UserProfile.objects.filter(user_id=userr_id).exists()
+    
+    return userr
+
+
+def extract_parameters(userr_id):
+    userr = UserProfile.objects.get(user_id=userr_id)
+    pr = {'coins': userr.user_points, 'name': userr.name, 'email': userr.email, "themes_owned": None, 'logos_owned': None}
+    return pr
+
+
+def add_user(request, signup):
+    user = authenticate(username=request.session['email'], password=request.session['password'])
+    if user is not None:
+        login(request, user)
+    if user is None:
+        user = User.objects.create_user(username=request.session['email'], name=request.session['name'], email=request.session['email'])
+        user.set_password(request.session['password'])
+        user.save()
+        
+        custom_user = UserProfile.objects.create(user=user)
+        custom_user.save()
