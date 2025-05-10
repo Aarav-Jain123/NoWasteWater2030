@@ -1,4 +1,3 @@
-from django.shortcuts import render, HttpResponse
 from rest_framework.decorators import api_view
 from random import randint
 from django.core.mail import send_mail
@@ -6,21 +5,23 @@ from django.conf import settings
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login, logout
 from .models import *
-from django.contrib import messages
 
 
 # Create your views here.
 @api_view(['POST'])
-def index(request):
+def index_page(request):
     auth_data = request.data 
-    request.session['user_id'] = auth_data['user_id']
+    request.session['user_id'] = auth_data['email']
     request.session['session_id'] = auth_data['session_id']
     
-    user_exists = authenticate_user(request.session['user_id'])
-    if user_exists:
-        res = extract_parameters(user_id=request.session['user_id'])
-    else:
-        return Response(data=[{'key': 0, 'response': 'Pls go /signup page'}])
+    try:
+        user_exists = authenticate_user(request.session['email'])
+        if user_exists:
+            res = extract_parameters(user_id=request.session['user_id'])
+        else:
+            res = [{'key': 0, 'response': 'Pls go /signup page'}]
+    except Exception as e:
+        res = [{'key': 0, 'response': e}]
             
     return Response(data=res)
 
@@ -34,11 +35,18 @@ def sign_up_page(request):
     request.session['password'] = auth_data['password']
     request.session.set_expiry(300)
     
-    request.session['auth_otp'] = otp_generator()
-    send_otp(request.session['email'], request.session['auth_otp'])
+    try:
     
-    res = [{'key': 0, 'response': 'Hello!'}]
-    
+        user = authenticate(username=request.session['email'], password=request.session['password'])
+        if user is None:
+            request.session['auth_otp'] = otp_generator()
+            send_otp(request.session['email'], request.session['auth_otp'])
+            res = [{'key': 0, 'response': 'OTP sent successfully, please check your inbox and spam folders!!'}]
+        else:
+            res = [{'key': 0, 'response': 'Seems like these credentials already exist, please go to /login!'}]
+    except Exception as e:
+        res = [{'key': 0, 'response': e}]
+        
     return Response(data=res)
 
 
@@ -46,15 +54,24 @@ def sign_up_page(request):
 def login_in_page(request):
     auth_data = request.data
     
-    request.session['email'] = request.data['email']
-    request.session['password'] = request.data['password']
+    request.session['email'] = auth_data['email']
+    request.session['password'] = auth_data['password']
     request.session.set_expiry(300)
     
-    request.session['auth_otp'] = otp_generator()
-    send_otp(request.session['email'], request.session['auth_otp'])
-    
-    res = [{'key': 0, 'response': 'Hello!'}]
-    
+    try:
+        user = authenticate(username=request.session['email'], password=request.session['password'])
+
+        if user is not None:
+            request.session['auth_otp'] = otp_generator()
+            send_otp(request.session['email'], request.session['auth_otp'])
+
+            res = [{'key': 0, 'response': 'OTP sent successfully, please check your inbox and spam folders!'}]
+
+        else:
+            res = [{'key': 0, 'response': 'Invalid credentials, please double check your credentials or go to /signup .'}]   
+    except Exception as e:
+        res = [{'key': 0, 'response': e}]
+            
     return Response(data=res)
 
 
@@ -95,3 +112,34 @@ def add_user(request, signup):
         
         custom_user = UserProfile.objects.create(user=user)
         custom_user.save()
+        
+
+@api_view(['GET'])
+def logout_page(request):
+    logout(request)
+    
+    res = [{'key': 0, 'response': 'Hello!'}]
+    
+    return Response(data=res)
+
+
+@api_view(['POST'])
+def delete_user(request):
+    auth_data = request.data
+    username_of_user = request.user.username
+    
+    try:
+    
+        user = authenticate(username=username_of_user, password=auth_data['password'])
+        if user:
+            user.objects.delete()
+            res = [{'key': 0, 'response': 'User deleted successfully!'}]
+        
+            return Response(data=res)
+        else:
+            res = [{'key': 0, 'response': 'Seems like something is wrong, please check check your credentials.'}]
+        
+    except Exception as e:
+        res = [{'key': 0, 'response': e}]
+    
+    return Response(data=res)
