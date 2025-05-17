@@ -8,21 +8,12 @@ from .models import *
 
 
 # Create your views here.
-@api_view(['POST'])
+@api_view(['GET'])
 def index_page(request):
-    auth_data = request.data 
-    request.session['user_id'] = auth_data['email']
-    request.session['session_id'] = auth_data['session_id']
-    
-    try:
-        user_exists = authenticate_user(request.session['email'])
-        if user_exists:
-            res = extract_parameters(user_id=request.session['user_id'])
-        else:
-            res = [{'key': 0, 'response': 'Pls go /signup page'}]
-    except Exception as e:
-        res = [{'key': 0, 'response': e}]
-            
+    if request.user.is_anonymous:
+        res = [{'key': 0, 'response': "False"}]
+    else:
+        res = [{"key": 0, 'response': 'True'}]           
     return Response(data=res)
 
 
@@ -77,7 +68,7 @@ def login_in_page(request):
 
 def otp_generator():
     r1, r2, r3, r4, r5, r6 = randint(0, 9), randint(0, 9), randint(0, 9), randint(0, 9), randint(0, 9), randint(0, 9)
-    r = f'{r1}{r2}{r3}{r4}{r5}{r6}' 
+    r = f'{r1}{r2}{r3}{r4}{r5}{r6}'
     return r
 
 
@@ -101,7 +92,7 @@ def extract_parameters(userr_id):
     return pr
 
 
-def add_user(request, signup):
+def add_user(request):
     user = authenticate(username=request.session['email'], password=request.session['password'])
     if user is not None:
         login(request, user)
@@ -124,7 +115,7 @@ def logout_page(request):
 
 
 @api_view(['POST'])
-def delete_user(request):
+def delete_user_page(request):
     auth_data = request.data
     username_of_user = request.user.username
     
@@ -137,9 +128,61 @@ def delete_user(request):
         
             return Response(data=res)
         else:
-            res = [{'key': 0, 'response': 'Seems like something is wrong, please check check your credentials.'}]
+            res = [{'key': 0, 'response': 'Something seems wrong, please check your credentials.'}]
         
     except Exception as e:
         res = [{'key': 0, 'response': e}]
     
+    return Response(data=res)
+
+
+@api_view(['POST'])
+def add_coins(request):
+    data = request.data
+    
+    email_id = data['email']
+    coins_to_add = data['coinsToAdd']
+    
+    user = UserProfile.object.get(email=email_id)
+    user.user_points = user.user_points + coins_to_add
+    
+    user.save()
+    
+    res = [{'key': 0, 'response': 'User points updated successfully!'}]
+    
+    return Response(data=res)
+
+
+@api_view(['POST'])
+def book_transaction(request):
+    data = request.data
+    
+    book_id = data['bookId']
+    
+    book = Books.objects.get(id=book_id)
+    bookPrice = book.price
+    
+    user_id = request.user.username
+    
+    user = UserProfile.objects.get(email=user_id)
+    userPoints = user.user_points
+    
+    if userPoints >= bookPrice:
+        user.user_points = userPoints - bookPrice
+        user.save()
+        
+        book.bookss.add(user)
+        
+        res = [{'key': 0, 'message': 'Transaction made successful'}]
+    else:
+        res = [{'key': 0, 'message': 'Transaction not successful'}]
+    
+    return Response(data=res)
+
+@api_view(['GET'])
+def books_page(request): 
+    if request.user.is_anonymous:
+        res = [{'key': 0, 'response': "False"}]
+    else:
+        res = [{"key": 0, 'response': 'True'}]           
     return Response(data=res)
