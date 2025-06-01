@@ -1,5 +1,7 @@
 {% extends 'main/base.html' %} {% block title %}Sign Up{% endblock %} 
 {% load crispy_forms_tags %} {% block content %}
+<h1 style='text-align: center'>NoWasteWater2030</h1>
+  <p style='text-align: center'>Thank you for considering for your environment</p>
 <form method="post">
   {% csrf_token %}{{form|crispy}}
   <p>Have an account? Login <a href="/login">Here</a>!</p>

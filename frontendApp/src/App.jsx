@@ -15,9 +15,6 @@ function App() {
       <Route path='/quiz/' element={<Quiz/>}/>
       <Route path='/shop' element={<Shop/>}/>
       <Route path='/your-profile' element={<YourProfile/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/signup' element={<Signup/>}/>
-      <Route path='/otp' element={<OTP/>}/>
     </Routes>
   )
 };

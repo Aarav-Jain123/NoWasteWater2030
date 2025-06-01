@@ -30,7 +30,7 @@ urlpatterns = [
     # path('password_reset/complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     # # path('otp/', include('mainapp.urls')),
     # # path('login/', include('mainapp.urls')),
-    # # path('signup/', include('mainapp.urls')),
+    path('signup/', include('mainapp.urls')),
     # path('shop/', include('mainapp.urls')),
     # path('your-profile/', include('mainapp.urls')),
     # path('quiz/', include('mainapp.urls')),

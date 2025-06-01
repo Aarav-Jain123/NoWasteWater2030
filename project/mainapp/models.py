@@ -5,8 +5,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 class UserProfile(models.Model):
     userr = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.TextField(default="")
+    name = models.CharField(default='', max_length=40)
     user_points = models.IntegerField(default=0)
+    USERNAME_FIELD = models.CharField(default='nuill', max_length=40)
     
     
     def __str__(self):

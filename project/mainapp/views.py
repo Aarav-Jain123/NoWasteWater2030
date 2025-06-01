@@ -5,6 +5,8 @@ from django.conf import settings
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login, logout
 from .models import *
+from .forms import *
+from django.shortcuts import render, redirect
 
 
 # Create your views here.
@@ -17,28 +19,28 @@ def index_page(request):
     return Response(data=res)
 
 
-@api_view(['POST'])
-def sign_up_page(request):
-    auth_data = request.data
+# @api_view(['POST'])
+# def sign_up_page(request):
+#     auth_data = request.data
     
-    request.session['name'] = auth_data['name']
-    request.session['email'] = auth_data['email']
-    request.session['password'] = auth_data['password']
-    request.session.set_expiry(300)
+#     request.session['name'] = auth_data['name']
+#     request.session['email'] = auth_data['email']
+#     request.session['password'] = auth_data['password']
+#     request.session.set_expiry(300)
     
-    try:
+#     try:
     
-        user = authenticate(username=request.session['email'], password=request.session['password'])
-        if user is None:
-            request.session['auth_otp'] = otp_generator()
-            send_otp(request.session['email'], request.session['auth_otp'])
-            res = [{'key': 0, 'response': 'OTP sent successfully, please check your inbox and spam folders!!'}]
-        else:
-            res = [{'key': 0, 'response': 'Seems like these credentials already exist, please go to /login!'}]
-    except Exception as e:
-        res = [{'key': 0, 'response': e}]
+#         user = authenticate(username=request.session['email'], password=request.session['password'])
+#         if user is None:
+#             request.session['auth_otp'] = otp_generator()
+#             send_otp(request.session['email'], request.session['auth_otp'])
+#             res = [{'key': 0, 'response': 'OTP sent successfully, please check your inbox and spam folders!!'}]
+#         else:
+#             res = [{'key': 0, 'response': 'Seems like these credentials already exist, please go to /login!'}]
+#     except Exception as e:
+#         res = [{'key': 0, 'response': e}]
         
-    return Response(data=res)
+#     return Response(data=res)
 
 
 @api_view(['POST'])
@@ -202,3 +204,15 @@ def quiz_page(request):
     else:
         res = [{'key': 0, 'response': 'True'}]
     return Response(data=res)
+
+def sign_up(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('/home')
+    else:
+        form = RegisterForm()
+
+    return render(request, 'registration/signup.html', {"form": form})
