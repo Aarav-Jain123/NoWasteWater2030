@@ -2,13 +2,18 @@ import React from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from '../assets/logo.png'
+import profileIcon from '../assets/profileIcon.png'
+
 
 const navigation = [
-  { name: 'Home', href: '#', current: false },
-  { name: 'Quiz', href: '#', current: false },
-  { name: 'Shop', href: '#', current: false },
+  { name: 'Home', href: '/', current: false },
+  { name: 'Quiz', href: '/quiz/', current: false },
+  { name: 'Shop', href: '/shop/', current: false },
+  { name: "Your Profile", href: '/your-profile/' }
   // { name: 'Calendar', href: '#', current: false },
 ]
+
+const url = new URL(window.location.href);
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -30,11 +35,6 @@ export default function Navbar() {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              {/* <img
-                alt="Your Company"
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 w-auto"
-              /> */}
                 <img
                 alt="Your Company"
                 src={logo}
@@ -47,9 +47,10 @@ export default function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
+                    id={item.href}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      url.pathname == item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                       'rounded-md px-3 py-2 text-sm font-medium',
                     )}
                   >
@@ -64,9 +65,6 @@ export default function Navbar() {
               type="button"
               className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
             >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="size-6" />
             </button>
 
             {/* Profile dropdown */}
@@ -77,7 +75,7 @@ export default function Navbar() {
                   <span className="sr-only">Open user menu</span>
                   <img
                     alt=""
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src={profileIcon}
                     className="size-8 rounded-full"
                   />
                 </MenuButton>
@@ -86,26 +84,18 @@ export default function Navbar() {
                 transition
                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
               >
-                <MenuItem>
+                {/* <MenuItem>
                   <a
-                    href="#"
+                    href={navigation[3].href}
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                   >
-                    Your Profile
+                    {navigation[3].name}
                   </a>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem>
                   <a
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                  >
-                    Settings
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-red-600 data-focus:text-white data-focus:outline-hidden hover:bg-red-600 hover:text-white"
                   >
                     Sign out
                   </a>

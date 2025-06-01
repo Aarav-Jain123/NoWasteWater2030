@@ -186,3 +186,19 @@ def books_page(request):
     else:
         res = [{"key": 0, 'response': 'True'}]           
     return Response(data=res)
+
+@api_view(['GET'])
+def your_profile_page(request):
+    if request.user.is_anonymous:
+        res = [{'key': 0, 'response': "False"}]
+    else:
+        res = [{'key': 0, 'response': request.user}]
+    return Response(data=res)
+
+@api_view(['GET'])
+def quiz_page(request):
+    if request.user.is_anonymous:
+        res = [{'key': 0, 'response': "False"}]
+    else:
+        res = [{'key': 0, 'response': 'True'}]
+    return Response(data=res)

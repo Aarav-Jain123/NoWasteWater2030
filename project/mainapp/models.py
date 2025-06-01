@@ -5,11 +5,12 @@ from django.contrib.auth.models import User
 # Create your models here.
 class UserProfile(models.Model):
     userr = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.TextField(default="")
     user_points = models.IntegerField(default=0)
     
     
     def __str__(self):
-        return self.user.name
+        return self.name
 
 
 class Books(models.Model):

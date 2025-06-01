@@ -1,14 +1,25 @@
-import { useState, useEffect } from 'react'
-import './App.css';
-import Navbar from './Components/Navbar'
+import { Routes, Route } from 'react-router-dom';
+import Home from '../src/Home';
+import Quiz from '../src/Quiz';
+import Shop from './Shop';
+import YourProfile from './YourProfile';
+import Login from './Login';
+import Signup from './Signup';
+import OTP from './OTP';
 
 function App() {
 
   return (
-    <>
-  <Navbar/>
-    </>
+    <Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/quiz/' element={<Quiz/>}/>
+      <Route path='/shop' element={<Shop/>}/>
+      <Route path='/your-profile' element={<YourProfile/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/signup' element={<Signup/>}/>
+      <Route path='/otp' element={<OTP/>}/>
+    </Routes>
   )
-}
+};
 
 export default App;
