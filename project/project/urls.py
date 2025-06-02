@@ -24,16 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',  include('mainapp.urls')),
     path('', include('django.contrib.auth.urls')),
-    # path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    # path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    # path('password_reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    # path('password_reset/complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-    # # path('otp/', include('mainapp.urls')),
-    # # path('login/', include('mainapp.urls')),
     path('signup/', include('mainapp.urls')),
-    # path('shop/', include('mainapp.urls')),
-    # path('your-profile/', include('mainapp.urls')),
-    # path('quiz/', include('mainapp.urls')),
-    # path('logout/', include('mainapp.urls')),
+
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

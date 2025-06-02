@@ -209,7 +209,14 @@ def sign_up(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            print(form.data)
+            print(form)
+            user = User.objects.create_user(first_name=form.data["first_name"], username=form.data['email'], email=form.data['email'])
+            user.set_password(form.data['password1'])
+            user.save()
+            
+            custom_user = UserProfile.objects.create(userr=user)
+            custom_user.save()
             login(request, user)
             return redirect('/home')
     else:
