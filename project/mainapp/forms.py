@@ -10,8 +10,9 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ['first_name', "email", "password1", "password2"]
 
-class OTPForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+# class OTPForm(UserCreationForm):
+#     email = forms.EmailField(required=True)
 
-    class Meta:
-        fields = ['OTP']
+#     class Meta:
+#         model = User
+#         fields = ['OTP']

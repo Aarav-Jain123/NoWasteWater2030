@@ -9,7 +9,7 @@ const navigation = [
   { name: 'Home', href: '/', current: false },
   { name: 'Quiz', href: '/quiz/', current: false },
   { name: 'Shop', href: '/shop/', current: false },
-  { name: "Your Profile", href: '/your-profile/' }
+  // { name: "Your Profile", href: '/your-profile/' }
   // { name: 'Calendar', href: '#', current: false },
 ]
 
@@ -92,6 +92,23 @@ export default function Navbar() {
                     {navigation[3].name}
                   </a>
                 </MenuItem> */}
+
+                <MenuItem>
+                  <a
+                    className="block px-4 py-2 text-sm text-gray-700 data-focus:outline-hidden"
+                  >
+                    Your Points
+                  </a>
+                </MenuItem>
+                <hr/>
+                <MenuItem>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-400 data-focus:text-white data-focus:outline-hidden hover:bg-gray-400 hover:text-white"
+                  >
+                    Your Profile
+                  </a>
+                </MenuItem>
                 <MenuItem>
                   <a
                     href="#"

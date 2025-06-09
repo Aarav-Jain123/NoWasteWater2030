@@ -6,8 +6,9 @@ from rest_framework.response import Response
 from django.contrib.auth import authenticate, login, logout
 from .models import *
 from .forms import *
+from random import randint
 from django.shortcuts import render, redirect
-
+from django.contrib import messages
 
 # Create your views here.
 @api_view(['GET'])
@@ -209,17 +210,34 @@ def sign_up(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            print(form.data)
-            print(form)
-            user = User.objects.create_user(first_name=form.data["first_name"], username=form.data['email'], email=form.data['email'])
-            user.set_password(form.data['password1'])
-            user.save()
-            
-            custom_user = UserProfile.objects.create(userr=user)
-            custom_user.save()
-            login(request, user)
-            return redirect('/home')
+            request.session['auth_token'] = otp_generator()
+            request.session['signup_data'] = form.data
+            send_otp(form.data.get('email'), request.session['auth_token'])
+            request.session.set_expiry(300)
+            return redirect('/otp')
     else:
         form = RegisterForm()
+    
+    logout(request)
 
     return render(request, 'registration/signup.html', {"form": form})
+
+
+def otp_page(request):
+    if request.method == "POST":
+        otp = request.POST.get('otp')
+        if otp == request.session['auth_token']:
+            data = request.session['signup_data']
+            user = User.objects.create_user(first_name=data.get('first_name'), username=data.get('email'), email=data.get('email'))
+            user.set_password(data.get('password1'))
+            user.save()
+            
+            custom_user = UserProfile.objects.create(userr=user, email=data.get('email'), name=data.get('first_name'))
+            custom_user.save()
+            login(request, user)
+            return redirect('http://localhost:5173/')
+        else:
+            messages.error(request, 'Invalid OTP')            
+    return render(request, 'registration/otp.html')
+
+# Check if user already has an account
