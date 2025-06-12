@@ -210,10 +210,15 @@ def sign_up(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            request.session['auth_token'] = otp_generator()
-            request.session['signup_data'] = form.data
-            send_otp(form.data.get('email'), request.session['auth_token'])
-            request.session.set_expiry(300)
+            user = authenticate(username=form.data.get('email'), password=form.data.get('password1'))
+            if user is None:
+                request.session['auth_token'] = otp_generator()
+                request.session['signup_data'] = form.data
+                send_otp(form.data.get('email'), request.session['auth_token'])
+                request.session.set_expiry(300)
+            else:
+                messages.error(request, '''Seems like the account already exists, please go to /login.''')
+                return redirect('/signup')
             return redirect('/otp')
     else:
         form = RegisterForm()

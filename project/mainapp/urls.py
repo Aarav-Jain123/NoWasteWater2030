@@ -9,4 +9,5 @@ urlpatterns = [
     path('otp/', otp_page, name='OTP'),
     path('your-profile/', your_profile_page, name='Your profile'),
     path('quiz/', quiz_page, name='Quiz'),
+    path('logout/', logout_page, name='Logout')
 ]
