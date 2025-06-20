@@ -9,6 +9,7 @@ from .forms import *
 from random import randint
 from django.shortcuts import render, redirect
 from django.contrib import messages
+import random
 
 # Create your views here.
 @api_view(['GET'])
@@ -20,28 +21,15 @@ def index_page(request):
     return Response(data=res)
 
 
-# @api_view(['POST'])
-# def sign_up_page(request):
-#     auth_data = request.data
-    
-#     request.session['name'] = auth_data['name']
-#     request.session['email'] = auth_data['email']
-#     request.session['password'] = auth_data['password']
-#     request.session.set_expiry(300)
-    
-#     try:
-    
-#         user = authenticate(username=request.session['email'], password=request.session['password'])
-#         if user is None:
-#             request.session['auth_otp'] = otp_generator()
-#             send_otp(request.session['email'], request.session['auth_otp'])
-#             res = [{'key': 0, 'response': 'OTP sent successfully, please check your inbox and spam folders!!'}]
-#         else:
-#             res = [{'key': 0, 'response': 'Seems like these credentials already exist, please go to /login!'}]
-#     except Exception as e:
-#         res = [{'key': 0, 'response': e}]
-        
-#     return Response(data=res)
+@api_view(['POST'])
+def your_profile(request):
+    if request.user.is_anonymous:
+        res = [{'key': 0, 'response': "False"}]
+    else:
+        userr = request.user
+        print(userr)
+        res = [{'key': 0, 'response': userr}]
+    return Response(data=res)
 
 
 @api_view(['POST'])
@@ -108,7 +96,7 @@ def add_user(request):
         custom_user.save()
         
 
-@api_view(['GET'])
+@api_view(['POST'])
 def logout_page(request):
     logout(request)
     
@@ -191,14 +179,6 @@ def books_page(request):
     return Response(data=res)
 
 @api_view(['GET'])
-def your_profile_page(request):
-    if request.user.is_anonymous:
-        res = [{'key': 0, 'response': "False"}]
-    else:
-        res = [{'key': 0, 'response': request.user}]
-    return Response(data=res)
-
-@api_view(['GET'])
 def quiz_page(request):
     if request.user.is_anonymous:
         res = [{'key': 0, 'response': "False"}]
@@ -245,4 +225,22 @@ def otp_page(request):
             messages.error(request, 'Invalid OTP')            
     return render(request, 'registration/otp.html')
 
-# Check if user already has an account
+
+@api_view(['POST'])
+def fact_abt_water(request):
+    facts = [
+    "Climate change is already affecting water access worldwide.",
+    "Increasing global temperatures intensify rainfall and droughts.",
+    "Runoff caused by rain can carry pollutants into freshwater systems.",
+    "Algal blooms result from fertilizer runoff and reduce water quality.",
+    "Glacier melt from warming increases sea levels and contaminates freshwater.",
+    "Desalination provides freshwater but is costly and energy-intensive.",
+    "Economic water scarcity affects Sub-Saharan Africa due to poor infrastructure.",
+    "About 4 billion people experience water scarcity for at least one month a year.",
+    "Water stress includes water quality, availability, and access issues.",
+    "Solutions to water scarcity include conservation, wastewater reuse, and desalination."
+]
+    chosen = random.choice(facts)
+    res = [{"key": 0, 'response': chosen}]
+    
+    return Response(data=res)

@@ -2,6 +2,7 @@ import React from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from '../assets/logo.png'
+import { getCSRFToken } from '../utils/csrf.js';
 import profileIcon from '../assets/profileIcon.png'
 
 
@@ -9,14 +10,25 @@ const navigation = [
   { name: 'Home', href: '/', current: false },
   { name: 'Quiz', href: '/quiz/', current: false },
   { name: 'Shop', href: '/shop/', current: false },
-  // { name: "Your Profile", href: '/your-profile/' }
-  // { name: 'Calendar', href: '#', current: false },
 ]
 
 const url = new URL(window.location.href);
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
+}
+function logout_user(){
+  fetch("http://127.0.0.1:8000/api/logout/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCSRFToken()
+    },
+    // credentials: "include",
+    body: JSON.stringify({ key: 0 })
+  }).then(() => {
+    window.location.href = "http://127.0.0.1:8000/login/";
+  });
 }
 
 export default function Navbar() {
@@ -103,7 +115,7 @@ export default function Navbar() {
                 <hr/>
                 <MenuItem>
                   <a
-                    href="#"
+                    href="/your-profile/"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-400 data-focus:text-white data-focus:outline-hidden hover:bg-gray-400 hover:text-white"
                   >
                     Your Profile
@@ -111,7 +123,8 @@ export default function Navbar() {
                 </MenuItem>
                 <MenuItem>
                   <a
-                    href="#"
+                    // href="#"
+                    onClick={logout_user}
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-red-600 data-focus:text-white data-focus:outline-hidden hover:bg-red-600 hover:text-white"
                   >
                     Sign out

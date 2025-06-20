@@ -22,10 +22,14 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',  include('mainapp.urls')),
+    path('api/',  include('mainapp.urls')),
     path('', include('django.contrib.auth.urls')),
-    path('signup/', include('mainapp.urls')),
+    # path('signup/', include('mainapp.urls')), 
     path('otp/', include('mainapp.urls')),
-    path('logout/', include('mainapp.urls'))
+    # path('fact-abt-water/', include('mainapp.urls')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+"""
+use api/signup for signup
+"""

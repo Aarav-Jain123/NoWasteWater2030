@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'mainapp.apps.MainappConfig',
     'rest_framework',
     'crispy_bootstrap5',
+    "corsheaders",    
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'mainapp.middleware.StaffRequiredMiddleware', 
     'corsheaders.middleware.CorsMiddleware',
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -159,3 +161,8 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = 'http://localhost:5173/'
 LOGOUT_REDIRECT_URL = '/login'
+
+# CSRF_COOKIE_HTTPONLY = False 
+# CSRF_COOKIE_NAME = "csrftoken"
+
+CORS_ALLOW_ALL_ORIGINS = True
