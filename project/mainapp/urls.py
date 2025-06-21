@@ -7,7 +7,7 @@ urlpatterns = [
     path('signup/', sign_up, name='Signup'),
     path('shop/', books_page, name='Rewards'),
     path('otp/', otp_page, name='OTP'),
-    path('quiz/', quiz_page, name='Quiz'),
+    path('quiz/', quiz, name='Quiz'),
     path('logout/', logout_page, name='Logout'),
     path('fact-abt-water/', fact_abt_water, name='Fact about water'),
 ]

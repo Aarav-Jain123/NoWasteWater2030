@@ -1,0 +1,502 @@
+[
+  {
+    "question": "1. What is one major effect of climate change on water access?",
+    "choices": [
+      "A. More snowfall",
+      "B. Decreased global temperature",
+      "C. Increased rainfall and droughts",
+      "D. Less ocean water"
+    ],
+    "answer": "C. Increased rainfall and droughts"
+  },
+  {
+    "question": "What causes algal blooms in water bodies?",
+    "choices": [
+      "A. Saltwater",
+      "B. Snowmelt",
+      "C. Wind currents",
+      "D. Fertilizer runoff"
+    ],
+    "answer": "D. Fertilizer runoff"
+  },
+  {
+    "question": "Why are algal blooms dangerous?",
+    "choices": [
+      "A. They clean the water",
+      "B. They release toxins",
+      "C. They reduce rainfall",
+      "D. They fertilize plants"
+    ],
+    "answer": "B. They release toxins"
+  },
+  {
+    "question": "What process removes salt from water?",
+    "choices": [
+      "A. Irrigation",
+      "B. Distillation",
+      "C. Filtration",
+      "D. Desalination"
+    ],
+    "answer": "D. Desalination"
+  },
+  {
+    "question": "Where is desalination commonly used?",
+    "choices": [
+      "A. South America",
+      "B. Southeast Asia",
+      "C. Middle East and North Africa",
+      "D. Europe"
+    ],
+    "answer": "C. Middle East and North Africa"
+  },
+  {
+    "question": "Why does snowmelt matter for water access?",
+    "choices": [
+      "A. It causes algal blooms",
+      "B. It fills reservoirs with fresh water, climate change, and water scarcity in Africa",
+      "C. It warms the air",
+      "D. It pollutes the ocean"
+    ],
+    "answer": "B. It fills reservoirs with fresh water, climate change, and water scarcity in Africa"
+  },
+  {
+    "question": "What is a major cause of physical water scarcity?",
+    "choices": [
+      "A. Too much rain",
+      "B. Lack of water in dry regions",
+      "C. Poor education",
+      "D. Cold weather"
+    ],
+    "answer": "B. Lack of water in dry regions"
+  },
+  {
+    "question": "What is a symptom of water scarcity?",
+    "choices": [
+      "A. Overpopulation",
+      "B. Water stress",
+      "C. Snowfall",
+      "D. Desalination"
+    ],
+    "answer": "B. Water stress"
+  },
+  {
+    "question": "How many people face severe water scarcity at least once a year?",
+    "choices": [
+      "A. 500,000",
+      "B. About 4 billion",
+      "C. 10 billion",
+      "D. 1 million"
+    ],
+    "answer": "B. About 4 billion"
+  },
+  {
+    "question": "What is one solution to water scarcity?",
+    "choices": [
+      "A. Melting icebergs",
+      "B. Wastewater reuse",
+      "C. Cutting trees",
+      "D. Throwing waste into rivers"
+    ],
+    "answer": "B. Wastewater reuse"
+  },
+  {
+    "question": "What is one major effect of climate change on water access?",
+    "choices": [
+      "A. Increased rainfall and droughts",
+      "B. Less ocean water",
+      "C. Decreased global temperature",
+      "D. More snowfall"
+    ],
+    "answer": "A. Increased rainfall and droughts"
+  },
+  {
+    "question": "What causes algal blooms in water bodies?",
+    "choices": [
+      "A. Saltwater",
+      "B. Wind currents",
+      "C. Snowmelt",
+      "D. Fertilizer runoff"
+    ],
+    "answer": "D. Fertilizer runoff"
+  },
+  {
+    "question": "Why are algal blooms dangerous?",
+    "choices": [
+      "A. They reduce rainfall",
+      "B. They fertilize plants",
+      "C. They release toxins",
+      "D. They clean the water"
+    ],
+    "answer": "C. They release toxins"
+  },
+  {
+    "question": "What process removes salt from water?",
+    "choices": [
+      "A. Desalination",
+      "B. Distillation",
+      "C. Filtration",
+      "D. Irrigation"
+    ],
+    "answer": "A. Desalination"
+  },
+  {
+    "question": "Where is desalination commonly used?",
+    "choices": [
+      "A. Europe",
+      "B. South America with fresh water, climate change, and water scarcity in Africa",
+      "C. Southeast Asia",
+      "D. Middle East and North Africa"
+    ],
+    "answer": "D. Middle East and North Africa"
+  },
+  {
+    "question": "Why does snowmelt matter for water access?",
+    "choices": [
+      "A. It pollutes the ocean",
+      "B. It fills reservoirs",
+      "C. It warms the air",
+      "D. It causes algal blooms"
+    ],
+    "answer": "B. It fills reservoirs"
+  },
+  {
+    "question": "What is a major cause of physical water scarcity?",
+    "choices": [
+      "A. Lack of water in dry regions",
+      "B. Too much rain",
+      "C. Cold weather",
+      "D. Poor education"
+    ],
+    "answer": "A. Lack of water in dry regions"
+  },
+  {
+    "question": "What is a symptom of water scarcity?",
+    "choices": [
+      "A. Overpopulation",
+      "B. Snowfall",
+      "C. Water stress",
+      "D. Desalination"
+    ],
+    "answer": "C. Water stress"
+  },
+  {
+    "question": "How many people face severe water scarcity at least once a year?",
+    "choices": [
+      "A. 500,000",
+      "B. About 4 billion",
+      "C. 1 million",
+      "D. 10 billion"
+    ],
+    "answer": "B. About 4 billion"
+  },
+  {
+    "question": "What is one solution to water scarcity?",
+    "choices": [
+      "A. Wastewater reuse",
+      "B. Melting icebergs",
+      "C. Cutting trees",
+      "D. Throwing waste into rivers"
+    ],
+    "answer": "A. Wastewater reuse"
+  },
+  {
+    "question": "What is one major effect of climate change on water access?",
+    "choices": [
+      "A. More snowfall",
+      "B. Increased rainfall and droughts",
+      "C. Decreased global temperature",
+      "D. Less ocean water"
+    ],
+    "answer": "B. Increased rainfall and droughts"
+  },
+  {
+    "question": "What causes algal blooms in water bodies?",
+    "choices": [
+      "A. Snowmelt",
+      "B. Wind currents",
+      "C. Saltwater",
+      "D. Fertilizer runoff"
+    ],
+    "answer": "D. Fertilizer runoff"
+  },
+  {
+    "question": "Why are algal blooms dangerous?",
+    "choices": [
+      "A. They release toxins",
+      "B. They reduce rainfall",
+      "C. They clean the water",
+      "D. They fertilize plants"
+    ],
+    "answer": "A. They release toxins"
+  },
+  {
+    "question": "What process removes salt from water?",
+    "choices": [
+      "A. Desalination",
+      "B. Distillation with fresh water, climate change, and water scarcity in Africa",
+      "C. Filtration",
+      "D. Irrigation"
+    ],
+    "answer": "A. Desalination"
+  },
+  {
+    "question": "Where is desalination commonly used?",
+    "choices": [
+      "A. Southeast Asia",
+      "B. South America",
+      "C. Europe",
+      "D. Middle East and North Africa"
+    ],
+    "answer": "D. Middle East and North Africa"
+  },
+  {
+    "question": "Why does snowmelt matter for water access?",
+    "choices": [
+      "A. It pollutes the ocean",
+      "B. It warms the air",
+      "C. It causes algal blooms",
+      "D. It fills reservoirs"
+    ],
+    "answer": "D. It fills reservoirs"
+  },
+  {
+    "question": "What is a major cause of physical water scarcity?",
+    "choices": [
+      "A. Too much rain",
+      "B. Lack of water in dry regions",
+      "C. Cold weather",
+      "D. Poor education"
+    ],
+    "answer": "B. Lack of water in dry regions"
+  },
+  {
+    "question": "What is a symptom of water scarcity?",
+    "choices": [
+      "A. Snowfall",
+      "B. Desalination",
+      "C. Water stress",
+      "D. Overpopulation"
+    ],
+    "answer": "C. Water stress"
+  },
+  {
+    "question": "How many people face severe water scarcity at least once a year?",
+    "choices": [
+      "A. 500,000",
+      "B. 1 million",
+      "C. About 4 billion",
+      "D. 10 billion"
+    ],
+    "answer": "C. About 4 billion"
+  },
+  {
+    "question": "What is one solution to water scarcity?",
+    "choices": [
+      "A. Melting icebergs",
+      "B. Wastewater reuse",
+      "C. Throwing waste into rivers",
+      "D. Cutting trees"
+    ],
+    "answer": "B. Wastewater reuse"
+  },
+  {
+    "question": "What is one major effect of climate change on water access?",
+    "choices": [
+      "A. Increased rainfall and droughts",
+      "B. More snowfall",
+      "C. Decreased global temperature",
+      "D. Less ocean water"
+    ],
+    "answer": "A. Increased rainfall and droughts"
+  },
+  {
+    "question": "What causes algal blooms in water bodies?",
+    "choices": [
+      "A. Wind currents",
+      "B. Fertilizer runoff",
+      "C. Snowmelt",
+      "D. Saltwater"
+    ],
+    "answer": "B. Fertilizer runoff"
+  },
+  {
+    "question": "Why are algal blooms dangerous?",
+    "choices": [
+      "A. They clean the water",
+      "B. They fertilize plants with fresh water, climate change, and water scarcity in Africa",
+      "C. They reduce rainfall",
+      "D. They release toxins"
+    ],
+    "answer": "D. They release toxins"
+  },
+  {
+    "question": "What process removes salt from water?",
+    "choices": [
+      "A. Desalination",
+      "B. Distillation",
+      "C. Irrigation",
+      "D. Filtration"
+    ],
+    "answer": "A. Desalination"
+  },
+  {
+    "question": "Where is desalination commonly used?",
+    "choices": [
+      "A. Europe",
+      "B. Middle East and North Africa",
+      "C. South America",
+      "D. Southeast Asia"
+    ],
+    "answer": "B. Middle East and North Africa"
+  },
+  {
+    "question": "Why does snowmelt matter for water access?",
+    "choices": [
+      "A. It causes algal blooms",
+      "B. It pollutes the ocean",
+      "C. It fills reservoirs",
+      "D. It warms the air"
+    ],
+    "answer": "C. It fills reservoirs"
+  },
+  {
+    "question": "What is a major cause of physical water scarcity?",
+    "choices": [
+      "A. Lack of water in dry regions",
+      "B. Cold weather",
+      "C. Poor education",
+      "D. Too much rain"
+    ],
+    "answer": "A. Lack of water in dry regions"
+  },
+  {
+    "question": "What is a symptom of water scarcity?",
+    "choices": [
+      "A. Snowfall",
+      "B. Water stress",
+      "C. Overpopulation",
+      "D. Desalination"
+    ],
+    "answer": "B. Water stress"
+  },
+  {
+    "question": "How many people face severe water scarcity at least once a year?",
+    "choices": [
+      "A. 10 billion",
+      "B. About 4 billion",
+      "C. 500,000",
+      "D. 1 million"
+    ],
+    "answer": "B. About 4 billion"
+  },
+  {
+    "question": "What is one solution to water scarcity?",
+    "choices": [
+      "A. Wastewater reuse",
+      "B. Throwing waste into rivers",
+      "C. Cutting trees",
+      "D. Melting icebergs"
+    ],
+    "answer": "A. Wastewater reuse"
+  },
+  {
+    "question": "What is one major effect of climate change on water access?",
+    "choices": [
+      "A. Less ocean water",
+      "B. Decreased global temperature",
+      "C. More snowfall",
+      "D. Increased rainfall and droughts"
+    ],
+    "answer": "D. Increased rainfall and droughts"
+  },
+  {
+    "question": "What causes algal blooms in water bodies?",
+    "choices": [
+      "A. Snowmelt",
+      "B. Fertilizer runoff with fresh water, climate change, and water scarcity in Africa",
+      "C. Wind currents",
+      "D. Saltwater"
+    ],
+    "answer": "B. Fertilizer runoff with fresh water, climate change, and water scarcity in Africa"
+  },
+  {
+    "question": "Why are algal blooms dangerous?",
+    "choices": [
+      "A. They release toxins",
+      "B. They reduce rainfall",
+      "C. They clean the water",
+      "D. They fertilize plants"
+    ],
+    "answer": "A. They release toxins"
+  },
+  {
+    "question": "What process removes salt from water?",
+    "choices": [
+      "A. Desalination",
+      "B. Filtration",
+      "C. Irrigation",
+      "D. Distillation"
+    ],
+    "answer": "A. Desalination"
+  },
+  {
+    "question": "Where is desalination commonly used?",
+    "choices": [
+      "A. Europe",
+      "B. Southeast Asia",
+      "C. Middle East and North Africa",
+      "D. South America"
+    ],
+    "answer": "C. Middle East and North Africa"
+  },
+  {
+    "question": "Why does snowmelt matter for water access?",
+    "choices": [
+      "A. It fills reservoirs",
+      "B. It warms the air",
+      "C. It causes algal blooms",
+      "D. It pollutes the ocean"
+    ],
+    "answer": "A. It fills reservoirs"
+  },
+  {
+    "question": "What is a major cause of physical water scarcity?",
+    "choices": [
+      "A. Poor education",
+      "B. Lack of water in dry regions",
+      "C. Cold weather",
+      "D. Too much rain"
+    ],
+    "answer": "B. Lack of water in dry regions"
+  },
+  {
+    "question": "What is a symptom of water scarcity?",
+    "choices": [
+      "A. Overpopulation",
+      "B. Water stress",
+      "C. Desalination",
+      "D. Snowfall"
+    ],
+    "answer": "B. Water stress"
+  },
+  {
+    "question": "How many people face severe water scarcity at least once a year?",
+    "choices": [
+      "A. 500,000",
+      "B. 1 million",
+      "C. About 4 billion",
+      "D. 10 billion"
+    ],
+    "answer": "C. About 4 billion"
+  },
+  {
+    "question": "What is one solution to water scarcity?",
+    "choices": [
+      "A. Wastewater reuse",
+      "B. Throwing waste into rivers",
+      "C. Melting icebergs",
+      "D. Cutting trees"
+    ],
+    "answer": "A. Wastewater reuse"
+  }
+]

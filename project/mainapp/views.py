@@ -10,6 +10,8 @@ from random import randint
 from django.shortcuts import render, redirect
 from django.contrib import messages
 import random
+import json
+from . import JSONops
 
 # Create your views here.
 @api_view(['GET'])
@@ -167,14 +169,6 @@ def books_page(request):
         res = [{"key": 0, 'response': 'True'}]           
     return Response(data=res)
 
-@api_view(['GET'])
-def quiz_page(request):
-    if request.user.is_anonymous:
-        res = [{'key': 0, 'response': "False"}]
-    else:
-        res = [{'key': 0, 'response': 'True'}]
-    return Response(data=res)
-
 def sign_up(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -217,19 +211,24 @@ def otp_page(request):
 
 @api_view(['POST'])
 def fact_abt_water(request):
-    facts = [
-    "Climate change is already affecting water access worldwide.",
-    "Increasing global temperatures intensify rainfall and droughts.",
-    "Runoff caused by rain can carry pollutants into freshwater systems.",
-    "Algal blooms result from fertilizer runoff and reduce water quality.",
-    "Glacier melt from warming increases sea levels and contaminates freshwater.",
-    "Desalination provides freshwater but is costly and energy-intensive.",
-    "Economic water scarcity affects Sub-Saharan Africa due to poor infrastructure.",
-    "About 4 billion people experience water scarcity for at least one month a year.",
-    "Water stress includes water quality, availability, and access issues.",
-    "Solutions to water scarcity include conservation, wastewater reuse, and desalination."
-]
-    chosen = random.choice(facts)
-    res = [{"key": 0, 'response': chosen}]
+    facts = JSONops.access_json_data('facts.json')
     
+    # chosen = random.choice(facts)
+    res = [{"key": 0, 'response': facts}]
+    
+    return Response(data=res)
+
+@api_view(['GET'])
+def quiz(request):
+    mcqs = JSONops.access_json_data('water_climate_mcqs.json')
+    start_and_end = lambda start=randint(0, len(mcqs)-6): (start,start+5)
+    startq, endq = start_and_end()
+    print(startq, endq)
+    try:
+        res = [{"key": 0, 'response': mcqs[startq:endq]}]
+    except Exception as e:
+        startq, endq = start_and_end()
+        print(startq, endq)
+        res = [{"key": 0, 'response': mcqs[startq:endq]}]
+
     return Response(data=res)
