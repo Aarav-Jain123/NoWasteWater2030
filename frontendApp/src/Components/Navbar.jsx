@@ -115,14 +115,6 @@ export default function Navbar() {
                 <hr/>
                 <MenuItem>
                   <a
-                    href="/your-profile/"
-                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-400 data-focus:text-white data-focus:outline-hidden hover:bg-gray-400 hover:text-white"
-                  >
-                    Your Profile
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
                     // href="#"
                     onClick={logout_user}
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-red-600 data-focus:text-white data-focus:outline-hidden hover:bg-red-600 hover:text-white"

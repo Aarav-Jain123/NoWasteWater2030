@@ -22,17 +22,6 @@ def index_page(request):
 
 
 @api_view(['POST'])
-def your_profile(request):
-    if request.user.is_anonymous:
-        res = [{'key': 0, 'response': "False"}]
-    else:
-        userr = request.user
-        print(userr)
-        res = [{'key': 0, 'response': userr}]
-    return Response(data=res)
-
-
-@api_view(['POST'])
 def login_in_page(request):
     auth_data = request.data
     

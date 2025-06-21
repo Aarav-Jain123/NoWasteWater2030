@@ -10,5 +10,4 @@ urlpatterns = [
     path('quiz/', quiz_page, name='Quiz'),
     path('logout/', logout_page, name='Logout'),
     path('fact-abt-water/', fact_abt_water, name='Fact about water'),
-    path('your-profile/', your_profile, name='YP')
 ]
