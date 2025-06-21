@@ -22,7 +22,7 @@ const Section = () => {
   return (
     <div>
     {fact.map((a) => (
-          <Card text={a.response} styleTailwind={"m-4 bg-gray-800 rounded-lg shadow flex items-center justify-center h-40 border-2"} />
+          <Card text={a.response + '- Filtered by Gemma'} styleTailwind={"m-4 bg-gray-800 rounded-lg shadow flex items-center justify-center h-40 border-2"} />
         ))}
     <Card text="Time left till all glacier melts: 75 years (2100 most probably)" styleTailwind={"m-4 bg-gray-800 rounded-lg shadow flex items-center justify-center h-40 border-2"} />
     {/* <Card text="Your books" styleTailwind={"m-4 bg-gray-800 rounded-lg shadow flex items-center justify-center h-40 border-2"} /> */}
