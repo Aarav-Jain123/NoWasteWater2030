@@ -1,16 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './Components/Header'
 import Card from './Components/Card'
+import { getCSRFToken } from './utils/csrf.js';
 
 const Quiz = () => {
   const [lockedIndex, setLockedIndex] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const [options, setOptions] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentOptions, setCurrentOptions] = useState([]);
+  const [currentAnswer, setCurrentAnswer] = useState(null);
+  const [score, setScore] = useState(0);
+  const []
 
-  const options = [
-    { text: 'A. H2O' },
-    { text: 'B. CO2' },
-    { text: 'C. HO2' },
-    { text: 'D. Mg' },
-  ];
+  const req = fetch("http://127.0.0.1:8000/api/quiz/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCSRFToken()
+    },
+    // credentials: "include",
+    body: JSON.stringify({ key: 0 })
+  }).then(res => res.json())
+    .then(data => {
+        for(let i=0;i<4;i++){
+          let question = {
+            text: data[0].response[i].question
+          }
+          setQuestions(questions => [...questions, question]);
+          let option = {
+            text: data[0].response[i].choices
+          }
+          setOptions(options => [...options, option]);
+        }
+    })
+    .catch(err => console.log(err));
+  
+  console.log(req)
+
+  // const options = [
+  //   { text: 'A. H2O' },
+  //   { text: 'B. CO2' },
+  //   { text: 'C. HO2' },
+  //   { text: 'D. Mg' },
+  // ];
 
   return (
     <div className="min-h-screen flex flex-col">

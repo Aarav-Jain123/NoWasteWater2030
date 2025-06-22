@@ -5,7 +5,7 @@ import { getCSRFToken } from '../utils/csrf.js';
 const Section = () => {
   const [fact, setFact] = useState([]);
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/fact-abt-water/", {
+    fetch("http://127.0.0.1:8000/api/quiz/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

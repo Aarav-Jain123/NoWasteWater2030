@@ -213,12 +213,13 @@ def otp_page(request):
 def fact_abt_water(request):
     facts = JSONops.access_json_data('facts.json')
     
+    
     # chosen = random.choice(facts)
-    res = [{"key": 0, 'response': facts}]
+    res = [{"key": 0, 'response': facts["facts"][randint(0, 9)]}]
     
     return Response(data=res)
 
-@api_view(['GET'])
+@api_view(['POST'])
 def quiz(request):
     mcqs = JSONops.access_json_data('water_climate_mcqs.json')
     start_and_end = lambda start=randint(0, len(mcqs)-6): (start,start+5)
